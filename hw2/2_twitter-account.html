@@ -1,0 +1,354 @@
+
+
+<html>
+
+    <head>
+        <link  rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" crossorigin="anonymous">
+    
+        <style>
+
+            #viewport{
+                background-color: rgb(174 210 229);
+            }
+            .container{
+                background-color: rgb(174 210 229);
+                /* background-color: black; */
+                margin-left: 10%;
+                margin-right: 10%;
+                /* min-width:100% */
+            }
+            img{
+                max-width: 100%;
+                /* min-width: 5%; */
+            }
+
+            #school-name{
+                font-weight: 500;
+                /* font-size: 10px; */
+            }
+
+            #school-subname{
+                color: grey;
+                font-size: 13px;
+            }
+
+            #tweet-button{
+                font-size: 11px;
+                font-weight: 500;
+                border-color: #d0c8c8;
+                border-width: 1px;
+                margin-top: 7px;
+                margin-bottom: 8px;
+            }
+            
+            #nav-bar > div{
+                display: inline-block;
+                padding-right: 6px;
+                padding-left: 25px;
+            }
+
+            #nav-bar{
+                height: 30px;
+                font-size: 13px;
+                font-weight: 700;
+                align-items: center;
+            }
+            #nav-bar, .tweet{
+                background-color: white;
+                margin-bottom: 3px;
+            }
+
+            .poster{
+                font-weight: 700;
+            }
+
+            .tweet{
+                font-size:12px;
+                padding-bottom: 5px;
+            }
+
+            .portrait{
+                padding-top: 4px;
+            }
+
+            .tweet-content{
+                padding-bottom: 6px;
+                font-size: 13px;
+            }
+
+            .tweet-right{
+                padding-left: 0px;
+            }
+
+            /* #follow > div > img{
+                max-width: 10%;
+            } */
+            
+            #who-to-follow{
+                background-color: white;
+                font-size: 13px;
+                font-weight: 700;
+                padding-left: 7px;
+                padding-right: 7px;
+                padding-bottom: 13px;
+                padding-top: 4px;
+            }
+            .ele-1{
+                max-width: 30%;
+                
+            }
+
+            .ele-2{
+                max-width:70%;
+                /* padding-top: 0px; */
+                padding-left: 3px;
+            }
+
+            .ele-2 > div{
+                font-size: 15px;
+                font-weight: 400;
+            }
+
+            .ele-2 > button{
+                font-size: 13px;
+                font-weight: 400;
+                border-width: 1px;
+                border-color: #cdc4c4;
+            }
+
+            .follow > div{
+                display: inline-block;
+                align-items: center;
+            }
+
+            .follow{
+                display: flex;
+                margin-top: 6px;
+                align-items: center;
+            }
+
+            hr{
+                margin-top: 15px;
+                margin-bottom: 10px;
+            }
+
+            #trends{
+                background-color: white;
+                margin-top:10px;
+                padding-left:7px;
+                padding-right:7px;
+                padding-top: 7px;
+                padding-bottom: 14px;
+            }
+
+            #trends-title{
+                font-weight: 700;
+                font-size: 13px;
+            }
+
+            .trend-sheet{
+                margin-top: 8px;
+            }
+            .trend-sheet-title{
+                font-size:10px;
+                color: blue;
+                font-weight: 700;
+            }
+
+            .trend-sheet-subtitle{
+                font-size: 9px;
+                color: grey;
+                font-weight: 400;
+            }
+
+            .col-1-pics{
+                padding-right: 30px;
+                padding-left: 15px;
+            }
+            .col-1-pics > div{
+                padding-left: 1px;
+                padding-right: 1px;
+                padding-top: 2px;
+            }
+
+            #column3{
+                margin-left:15px
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <div id="viewport" class="container-fliud">
+            <div class="container">
+                <div class="row">
+                    <div id="column1" class="col-md-3 row">
+
+                        <div>
+                            <div id="school-name">
+                                Columbia University
+                            </div>
+
+                            <div id="school-subname">
+                                @Columbia
+                            </div>
+
+                            <button id="tweet-button">
+                                Tweet to Columbia
+                            </button>
+
+                            <div class="col-1-pics row" >
+                            
+                                <div class="col-md-4">
+                                    <img src="http://coms4170.cs.columbia.edu/2020-spring/hw/hw2/columbia.jpg">
+                                </div>
+                                <div class="col-md-4">
+                                    <img src="http://coms4170.cs.columbia.edu/2020-spring/hw/hw2/columbia.jpg">
+                                </div>
+                                <div class="col-md-4">
+                                    <img src="http://coms4170.cs.columbia.edu/2020-spring/hw/hw2/columbia.jpg">
+                                </div>
+                                <div class="col-md-4">
+                                    <img src="http://coms4170.cs.columbia.edu/2020-spring/hw/hw2/columbia.jpg">
+                                </div>
+                                <div class="col-md-4">
+                                    <img src="http://coms4170.cs.columbia.edu/2020-spring/hw/hw2/columbia.jpg">
+                                </div>
+                                <div class="col-md-4">
+                                    <img src="http://coms4170.cs.columbia.edu/2020-spring/hw/hw2/columbia.jpg">
+                                </div>     
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="column2" class="col-md-6">
+                        <div id="nav-bar" class="row">
+                            <div>Tweets</div>
+                            <div>Media</div>
+                            <div>Other</div>
+                            <div>Other2</div>
+                        </div>
+
+                        <div class="row tweet">
+                            <div class="col-md-2 portrait">
+                                <img src="http://coms4170.cs.columbia.edu/2020-spring/hw/hw2/columbia.jpg">
+                            </div>
+                            <div class="col-md-10 tweet-right">
+                                <div class="poster">Columbia University</div>
+                                <div class="tweet-content">
+                                    Groundbreaking. Beautiful. Monumental. More text. Read this. Lots to read.<br>
+                                    Lorem ispum. Get it to break the line. Must use up 3 lines. what else can I say?<br>
+                                    #threelines
+                                    
+                                </div>
+
+                                <div>
+                                    <img src="http://coms4170.cs.columbia.edu/2020-spring/hw/hw2/columbia.jpg">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row tweet">
+                            <div class="col-md-2 portrait">
+                                <img src="http://coms4170.cs.columbia.edu/2020-spring/hw/hw2/columbia.jpg">
+                            </div>
+                            <div class="col-md-10 tweet-right">
+                                <div class="poster">Columbia University</div>
+                                <div class="tweet-content">
+                                    Groundbreaking. Beautiful. Monumental. More text. Read this. Lots to read.<br>
+                                    Lorem ispum. Get it to break the line. Must use up 3 lines. what else can I say?<br>
+                                    #threelines
+                                    
+                                </div>
+
+                                <div>
+                                    <img src="http://coms4170.cs.columbia.edu/2020-spring/hw/hw2/columbia.jpg">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="column3" class="col-md-3">
+                        <div class="row">
+                            <div>
+                                <div id="who-to-follow">
+
+                                    <div>
+                                        Who to follow
+                                    </div>
+
+                                    <div class="follow">
+                                        <div class="ele-1">
+                                            <img src="http://coms4170.cs.columbia.edu/2020-spring/hw/hw2/columbia.jpg">
+                                        </div>
+
+                                        <div class="ele-2">
+                                            <div>Columbia</div>
+                                            <button>follow</button> 
+                                        </div>
+
+                                    </div>
+
+                                    <hr>
+
+                                    <div class="follow">
+                                        <div class="ele-1">
+                                            <img src="http://coms4170.cs.columbia.edu/2020-spring/hw/hw2/columbia.jpg">
+                                        </div>
+
+                                        <div class="ele-2">
+                                            <div>Columbia</div>
+                                            <button>follow</button> 
+                                        </div>
+
+                                    </div>
+
+                                    <hr>
+
+                                    <div class="follow">
+                                        <div class="ele-1">
+                                            <img src="http://coms4170.cs.columbia.edu/2020-spring/hw/hw2/columbia.jpg">
+                                        </div>
+
+                                        <div class="ele-2">
+                                            <div>Columbia</div>
+                                            <button>follow</button> 
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+
+                                <div id="trends">
+                                    
+                                    <div id="trends-title">
+                                        Trends for you!
+                                    </div>
+
+                                    <div class="trend-sheet">
+                                        <div class="trend-sheet-title">#COMS4170</div>
+                                        <div class="trend-sheet-subtitle">45 million tweets</div>
+                                    </div>
+
+                                    <div class="trend-sheet">
+                                        <div class="trend-sheet-title">#COMS6889-08</div>
+                                        <div class="trend-sheet-subtitle">35 million tweets</div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     
+
+    </body>
+</html>
