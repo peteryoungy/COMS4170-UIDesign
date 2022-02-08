@@ -1,0 +1,159 @@
+<html>
+
+<head>
+
+    <script src=https://code.jquery.com/jquery-3.3.1.min.js crossorigin="anonymous"></script>
+
+    <script>
+
+        // no border: border style
+        // button: disabled:true
+        $(document).ready(function(){
+            $('#remain-chars').html('30');
+        })
+
+        $(document).ready(function() {
+
+            $("#input-box").keyup(function() {
+
+                if (event.keyCode === 13) {
+                    $("button").click();
+                }
+
+                var cs = [30 - $(this).val().length];
+                console.log(cs);
+
+                if (cs >= 0) {
+                    $('#remain-chars').css("color", "lightgrey");
+                    $('#remain-chars').css("font-weight","normal");
+                    $('button').prop("disabled", false);
+                } else {
+                    $('#remain-chars').css("color", "red");
+                    $('#remain-chars').css("font-weight","600");
+                    $('button').prop("disabled", true);
+                }
+
+                $('#remain-chars').text(cs);
+
+            });
+        });
+
+        // submit handler
+
+        // $(document).ready(function() {
+        //     $("button").click(function() {
+        //         let newPost = $("<div>")
+        //         let data = JSON.stringify($("form").serialize());
+        //         $.each(data, function(i, field) {
+        //             // $("#post-list").append(field.name + ":" +
+        //             //     field.value + " ");
+        //             $(newPost).text("Chilton: " + field.value);
+        //         });
+
+        //         $("post-list").append(newPost)
+        //             // $(newPost).text("Chilton: " + )
+        //     });
+        // });
+
+        // $(document).ready(function() {
+        //     $("button").click(function() {
+        //         var x = $("form").serializeArray();
+        //         console.log(x)
+        //         $.each(x, function(i, field) {
+        //             $("#output").append(field.name + ":" +
+        //                 field.value + " ");
+        //         });
+        //     });
+        // });
+
+        $(document).ready(function() {
+            $("button").click(function() {
+
+                let data = $("#input-box").val();
+                console.log(data);
+                if (!data.trim()) {
+                    // is empty or whitespace
+                    console.log("empty");
+                    // must dp clean-up
+                    $("#input-box"). val("");
+                    $("#remain-chars").text(30);
+                    // set cursor at the beginning of the input box
+                    $("#input-box").focus();
+                    $("#input-box").get(0).setSelectionRange(0, 0);
+                    return;
+                }
+
+                let newPost = $("<div>");
+                $(newPost).css("border-color","black");
+                $(newPost).css("border-width","1px");
+                $(newPost).css("border-style","solid");
+                $(newPost).css("width","280px");
+                
+                let userName = $("<span>");
+                $(userName).css("font-weight","600");
+                $(userName).text("Chilton  ");
+
+                let userPost = $("<span>");
+                $(userPost).text(data); 
+
+                $(newPost).append(userName);
+                $(newPost).append(userPost);
+
+                $("#post-list").prepend(newPost);
+                
+                // must dp clean-up
+                $("#input-box").val("");
+                $("#remain-chars").text(30);
+                // set cursor at the beginning of the input box
+                $("#input-box").focus();
+                $("#input-box").get(0).setSelectionRange(0, 0);
+            });
+        });
+    </script>
+
+    <style>
+        #remain-chars {
+            color: lightgrey
+        }
+        
+        .inline {
+            display: inline-block;
+        }
+
+        #posts{
+            margin-bottom: 20px;
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+    <div id="posts">
+        <div>POSTS</div>
+        <div id="post-list">
+
+        </div>
+    </div>
+
+    <div>
+        <label >Write a tweet</label><br>
+        <input type="text" id="input-box" name="post"></input>
+        
+        <br>
+
+        <div id="remain-chars" class="inline">
+        </div>
+        <button type="button" class="inline">
+            Post Tweet
+        </button>
+
+
+    </div>
+
+
+
+</body>
+
+</html>

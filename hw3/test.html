@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js">
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $("button").click(function() {
+                var x = $("form").serializeArray();
+                console.log(x)
+                $.each(x, function(i, field) {
+                    $("#output").append(field.name + ":" +
+                        field.value + " ");
+                });
+                // let newPost = $("<div>")
+                //     $.each(x, function(i, field) {
+                //     $(newPost).text("Chilton" + field.value);
+                // });
+                
+                // $.each(x, function(i, field) {
+                //     $("#post-list").append("Chilton"+
+                //         field.value);
+                // });
+            });
+        });
+    </script>
+
+    <style>
+        #GFG {
+            width: 300px;
+            padding: 50px;
+            height: 150px;
+            border: 2px solid green;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div>POSTS</div>
+        <div id="post-list"></div>
+    </div>
+    <div id="GFG">
+        <form action="#">
+            Name: <input type="text" style="margin: 10px;" name="Name">
+            <br>
+        </form>
+        <button>Submit</button>
+
+    </div>
+
+
+    <div id="output"></div>
+</body>
+
+</html>
