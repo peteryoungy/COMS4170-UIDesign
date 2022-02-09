@@ -6,6 +6,7 @@
 
     <script>
 
+
         // no border: border style
         // button: disabled:true
         $(document).ready(function(){
@@ -21,15 +22,13 @@
                 }
 
                 var cs = [30 - $(this).val().length];
-                console.log(cs);
+                // console.log(cs);
 
                 if (cs >= 0) {
-                    $('#remain-chars').css("color", "lightgrey");
-                    $('#remain-chars').css("font-weight","normal");
+                    $('#remain-chars').removeClass('remain-chars-new');
                     $('button').prop("disabled", false);
                 } else {
-                    $('#remain-chars').css("color", "red");
-                    $('#remain-chars').css("font-weight","600");
+                    $('#remain-chars').addClass("remain-chars-new");
                     $('button').prop("disabled", true);
                 }
 
@@ -38,36 +37,15 @@
             });
         });
 
+
         // submit handler
-
-        // $(document).ready(function() {
-        //     $("button").click(function() {
-        //         let newPost = $("<div>")
-        //         let data = JSON.stringify($("form").serialize());
-        //         $.each(data, function(i, field) {
-        //             // $("#post-list").append(field.name + ":" +
-        //             //     field.value + " ");
-        //             $(newPost).text("Chilton: " + field.value);
-        //         });
-
-        //         $("post-list").append(newPost)
-        //             // $(newPost).text("Chilton: " + )
-        //     });
-        // });
-
-        // $(document).ready(function() {
-        //     $("button").click(function() {
-        //         var x = $("form").serializeArray();
-        //         console.log(x)
-        //         $.each(x, function(i, field) {
-        //             $("#output").append(field.name + ":" +
-        //                 field.value + " ");
-        //         });
-        //     });
-        // });
-
         $(document).ready(function() {
             $("button").click(function() {
+                
+                // disable click event when chars > 30
+                if($("button").prop("disabled") == true){
+                    return;
+                }
 
                 let data = $("#input-box").val();
                 console.log(data);
@@ -84,13 +62,10 @@
                 }
 
                 let newPost = $("<div>");
-                $(newPost).css("border-color","black");
-                $(newPost).css("border-width","1px");
-                $(newPost).css("border-style","solid");
-                $(newPost).css("width","280px");
+                $(newPost).addClass("post-style");
                 
                 let userName = $("<span>");
-                $(userName).css("font-weight","600");
+                $(userName).addClass("username-style");
                 $(userName).text("Chilton  ");
 
                 let userPost = $("<span>");
@@ -98,7 +73,6 @@
 
                 $(newPost).append(userName);
                 $(newPost).append(userPost);
-
                 $("#post-list").prepend(newPost);
                 
                 // must dp clean-up
@@ -116,12 +90,27 @@
             color: lightgrey
         }
         
+        #remain-chars.remain-chars-new{
+            color:red;
+            font-weight: 600;
+        }
         .inline {
             display: inline-block;
         }
 
         #posts{
             margin-bottom: 20px;
+        }
+
+        .post-style{
+            border-style: solid;
+            border-width: 1px;
+            border-color: black;
+            width: 280px;
+        }
+
+        .username-style{
+            font-weight: 600;
         }
     </style>
 
@@ -139,7 +128,7 @@
 
     <div>
         <label >Write a tweet</label><br>
-        <input type="text" id="input-box" name="post"></input>
+        <input type="text" id="input-box"></input>
         
         <br>
 
