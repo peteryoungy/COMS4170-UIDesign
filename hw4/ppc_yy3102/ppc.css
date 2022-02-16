@@ -1,0 +1,50 @@
+/* .container{
+    margin-right:80% 
+} */
+
+.ppc-layout{
+    background-color: #95c7e2;
+    font-size: 15px;
+    font-weight: 600;
+    height: 50px;
+    
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.default-name-style{
+    border-style: solid;
+    border-width: 1px;
+    border-color: grey;
+
+    font-weight: 600;
+}
+
+.name-hover-over{
+    background-color: rgb(255, 255, 196);
+    cursor: move;
+    caret-color: black;
+}
+.adjust-pos{
+    left:0px;
+    top:0px
+}
+#title{
+    background-color: lightgray;
+    height: 100px;
+    font-size: 25px;
+    font-weight: 600;
+
+    display: flex;
+    align-items:center;
+    padding-left: 30px;
+    margin-bottom: 25px;
+
+}
+.start-dragging{
+    background-color: rgb(57, 155, 197);
+}
+.drop-over{
+    background-color: rgb(7, 90, 142);
+}
