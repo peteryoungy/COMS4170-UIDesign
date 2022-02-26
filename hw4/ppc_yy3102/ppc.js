@@ -50,7 +50,7 @@ function makeNames(selector, names){
             // drag must hover over?
             // classes:{
             //     "ui-draggable-dragging": "name-hover-over"
-            // },
+            // },   
             zIndex: 100
         })
 
@@ -59,9 +59,13 @@ function makeNames(selector, names){
 }
 
 function makeDroppable(source, target){
+
     $(target).droppable({
         accept: source,
         drop: function(event, ui){
+            
+            // TODO: ui.draggable[0]
+
 
             // func: remove backgroud color
             $(this).removeClass("start-dragging")

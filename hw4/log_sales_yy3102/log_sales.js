@@ -113,6 +113,10 @@ function regSubmitEvent(){
         console.log('click button')
         let data = $('.form-submit').serializeArray()
 
+        // todo: didn't use form ?
+        
+
+
         // func: check data validity
         if(data[0].value === ""){
             console.log('client is empty')

@@ -1,0 +1,101 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+<script>
+
+    console.log("html")
+    let item = {{ item|tojson }}
+    console.log(item)
+
+    $(document).ready(function(){
+        $("#description").html(  item.volumeInfo.description )
+    })
+
+
+</script>
+
+<style>
+
+    #info {
+        font-size: 14px;
+        font-weight: 500
+    }
+    .subtitle{
+        font-size: 15px;
+        font-weight: 900;
+    }
+</style>
+
+<h2 id = "title">
+    {{item.volumeInfo.title}}
+</h2>
+
+<div id="img-div">
+    <img src={{item.volumeInfo.imageLinks.thumbnail}}>
+</div>
+
+<div id="info">
+
+    <div id="authors">         
+        <span class="subtitle">
+            Authors: 
+        </span>     
+        <span>
+            
+            {% for author in item.volumeInfo.authors %} 
+                <span> {{author}} </span>
+            {% endfor %}
+
+        </span>
+    </div>
+
+    <div id="publisher"> 
+        <div>
+            <span class="subtitle">Publisher:</span> 
+            <span> {{ item.volumeInfo.publisher }} </span> 
+        </div> 
+    </div>
+
+    <div id="publishedDate"> 
+        <div>
+            <span  class="subtitle"> Pulished Date: </span> 
+            <span>{{ item.volumeInfo.publishedDate }} </span>
+        </div>
+    </div>
+
+    <div>
+        <div class="subtitle">
+            Description:
+        </div>
+        <div id="description"> 
+            <!-- description: {{ item.volumeInfo.description }} -->
+        </div>
+    </div>
+
+    <div id="industryId"> 
+
+        <span class="subtitle"> 
+            Industry Identifiers:
+        </span> 
+        <ul>
+            {% for entry in item.volumeInfo.industryIdentifiers %} 
+                <li> {{entry.type}} : {{entry.identifier}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div id="pageCount"> 
+        <div> 
+            <span class="subtitle"> Page Count: </span>
+            <span> {{item.volumeInfo.pageCount }} </span>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+{% endblock %}
