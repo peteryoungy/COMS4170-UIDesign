@@ -339,18 +339,6 @@ data = [
 ]
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 # ROUTES
 
 @app.route('/')
