@@ -1,0 +1,26 @@
+#title{
+    height: 130px;
+    background-color: lightgrey;
+    font-size: 24px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    margin-bottom: 30px;
+}
+
+.input{
+    width:100%
+}
+
+.entry-default{
+    margin-bottom: 5px;
+}
+
+.alert-default{
+    margin-top: 10px;
+    margin-bottom: 0px;
+    padding: 0px;
+    padding-left: 3px;
+    font-size: 13px;
+}

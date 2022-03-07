@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<script type="text/javascript" src="{{ url_for('static', filename = 'home.js') }}"></script>
+
+<style>
+
+    #item-container > a{
+
+        display: block;
+    }
+
+    #prompt {
+        font-size: 30px;
+        font-weight: 700
+        ;
+    }
+
+</style>
+
+<p id="prompt">
+    Most popular interview books this week: 
+</p>
+
+<div id="item-container">
+
+    
+</div>
+
+{% endblock %}

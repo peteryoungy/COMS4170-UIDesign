@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+
+<script>
+
+    $("")
+    
+</script>
+
+<style> 
+
+    #item-container > a {
+        display: block;
+    }
+
+    #prompt{
+        font-size: 30px;
+        font-weight: 700;
+    }
+</style>
+
+<div id="prompt">
+
+    Showing results for  "{{ keyword}}"
+
+</div>
+
+
+
+<div id="item-container">
+
+
+
+    {% if search_list|length == 0 %}
+        No results found
+    {% else %}
+        {% for key, value  in search_list.items() %}
+        <a href="http://localhost:5000/view/{{ key }}"> {{ value }} </a>
+        {% endfor %}
+    {% endif %}
+
+
+</div>
+{% endblock %}
