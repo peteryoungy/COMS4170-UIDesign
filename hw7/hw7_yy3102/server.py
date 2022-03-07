@@ -389,8 +389,8 @@ def search_results(keyword = None):
 
 
 
-@app.route('/get_title', methods=['GET', 'POST'])
-def get_title():
+@app.route('/get_item', methods=['GET', 'POST'])
+def get_item():
 
     global data 
 
@@ -399,9 +399,9 @@ def get_title():
     print(id)
     print(type(id))
 
-    title = data[int(id) - 1]["volumeInfo"]["title"]
+    item = data[int(id) - 1]
 
-    return jsonify(title = title)
+    return jsonify(item = item)
 
 
 
