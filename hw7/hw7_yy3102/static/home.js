@@ -17,12 +17,11 @@ function displayBooks(){
         let imga = $("<a>")
         imga.attr("href", "/view/" + value)
         let img = $("<img>")
-        let title = $("<a>")
+        let title = $("<a class=title>")
         title.attr("href", "/view/" + value)
-        // let author = $("<a>")
 
-        // let item = $("<a>")
-        // item.attr("href", "/view/" + value)
+        let authordiv = $("<div>")
+
         
         let data_to_send = {"id": value}
 
@@ -37,7 +36,14 @@ function displayBooks(){
                 img.attr("src", result["item"]["volumeInfo"]["imageLinks"]["thumbnail"])
                 img.attr("alt", "book-cover")
                 title.text(result["item"]["volumeInfo"]["title"])
-                // author.text(result["item"]["volumeInfo"])
+                authors = result["item"]["volumeInfo"]["authors"]
+
+                $.each(authors, function(index, val){
+                    let author = $("<a class=author>")
+                    author.attr("href", "/view/" + value)
+                    author.text(val)
+                    authordiv.append(author)
+                })
 
             },
             error: function(request, status, error){
@@ -52,6 +58,7 @@ function displayBooks(){
         imga.append(img)
         item.append(imga)
         item.append(title)
+        item.append(authordiv)
 
         $("#item-container").append(item)
 
