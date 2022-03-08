@@ -339,6 +339,8 @@ data = [
 ]
 
 
+id = 11
+
 # ROUTES
 
 @app.route('/')
@@ -348,6 +350,12 @@ def default():
 @app.route('/home')
 def home():
    return render_template('home.html')  
+
+
+@app.route('/add')
+def add():
+   return render_template('add.html')  
+
 
 @app.route('/view/<id>', methods=['GET', 'POST'])
 def get_details(id = None):
@@ -402,6 +410,24 @@ def get_item():
     item = data[int(id) - 1]
 
     return jsonify(item = item)
+
+
+@app.route('/add_item', methods=['GET', 'POST'])
+def add_item():
+
+    global data 
+    global id
+
+    json_data = request.get_json()   
+    new_book = json_data["new_book"] 
+    print(new_book)
+    print(type(new_book))
+
+    new_book["id"] = str(id)
+    id = id + 1
+    data.append(new_book)
+
+    return jsonify(id = id - 1)
 
 
 
