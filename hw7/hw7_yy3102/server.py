@@ -430,6 +430,21 @@ def add_item():
     return jsonify(id = id - 1)
 
 
+@app.route('/edit/<id>', methods=['GET', 'POST'])
+def edit(id = None):
+
+    global data 
+
+    # json_data = request.get_json()   
+    # id = json_data["id"] 
+    # print(id)
+    # print(type(id))
+
+    print(id)
+    item = data[int(id) - 1]
+
+    return render_template('edit.html', item = item)
+
 
 if __name__ == '__main__':
    app.run(debug = True)
