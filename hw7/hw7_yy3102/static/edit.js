@@ -1,5 +1,6 @@
 
 
+
 $(document).ready(function(){
 
     $(".btn-add").click(function(){
@@ -7,7 +8,6 @@ $(document).ready(function(){
         // get current length
         let index = $(".author-group").children().length
 
-        //<input id="add-author" name="author"></input>
         let newEntry = $("<div class=inline>")
         newEntry.attr("id", "author-div-" + index)
 
@@ -18,9 +18,17 @@ $(document).ready(function(){
         $(".author-group").append(newEntry)
     })
 
+
     $("#add-submit").click(function(event){
 
-        event.preventDefault();
+        // event.preventDefault();
+
+        let pathname = window.location.pathname
+        // console.log(pathname)
+        // console.log(pathname.substring(6))
+        let id = pathname.substring(6)
+        // window.location.replace("http://localhost:5000/edit/" + pathname.substring(6));
+
 
         // console.log("On Click1.")
 
@@ -165,96 +173,54 @@ $(document).ready(function(){
 
             
         }
+
+
         // clean all error
         $(".alert").remove()
 
-        // send add request
-        let obj = {}
-        obj.volumeInfo = {}
-        obj.volumeInfo.title = title
-        obj.volumeInfo.authors = authors
-        obj.volumeInfo.publisher = publisher
-        obj.volumeInfo.publishedDate = published_date
-        obj.volumeInfo.description = description
-        obj.volumeInfo.industryIdentifiers = [
-            {
-                "type": "ISBN_10",
-                "identifier": isbn[0]
-            },
-            {
-                "type": "ISBN_13",
-                "identifier": isbn[1]
-            }
-        ]
-        obj.volumeInfo.pageCount = length
-        obj.volumeInfo.imageLinks = {
-            "thumbnail": image_link
-        }
 
-        let data_to_send = {"new_book": obj}         
-        $.ajax({
-            type: "POST",
-            url: "add_item",                
-            dataType : "json",
-            contentType: "application/json; charset=utf-8",
-            data : JSON.stringify(data_to_send),
-            success: function(result){
-                // <div class="alert alert-success" role="alert">
-                // A simple success alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
-                // </div>
-                let id = result["id"]
+        // redirect
+        // window.location.href = "http://localhost:5000/add_item"
 
-                console.log("add a item, id is " + id)
-                
-                let new_reminder = $("<div>")
-                new_reminder.addClass("alert")
-                new_reminder.addClass("alert-success")
-                new_reminder.attr("role", "alert")
-                new_reminder.append("New item successfully created.")
-                
-                let new_a = $("<a>")
-                new_a.attr("href", "/view/" + id)
-                new_a.text("See it here.")
 
-                new_reminder.append(new_a)
-                $("#reminder").append(new_reminder)
-                // clear all the alert
-                $("input").val("")
-                $("textarea").val("")
-                $("#add-title").focus()
+        // window.location.href = "http://localhost:5000/view/" + id
 
-                console.log("add finished")
-            },
-            error: function(request, status, error){
-                console.log("Error");
-                console.log(request)
-                console.log(status)
-                console.log(error)
-            }
-        });
+
+        // // send add request
+        // let obj = {}
+        // obj.volumeInfo = {}
+        // obj.volumeInfo.title = title
+        // obj.volumeInfo.authors = authors
+        // obj.volumeInfo.publisher = publisher
+        // obj.volumeInfo.publishedDate = published_date
+        // obj.volumeInfo.description = description
+        // obj.volumeInfo.industryIdentifiers = [
+        //     {
+        //         "type": "ISBN_10",
+        //         "identifier": isbn[0]
+        //     },
+        //     {
+        //         "type": "ISBN_13",
+        //         "identifier": isbn[1]
+        //     }
+        // ]
+        // obj.volumeInfo.pageCount = length
+        // obj.volumeInfo.imageLinks = {
+        //     "thumbnail": image_link
+        // }
+
+
   
 
     })
 })
 
 
-// function removeAlert(pos){
 
-//     let l = $(pos).children().length
-//     if(l === 1) {
-//         // console.log("length = " + l + " don't add this time.");
-//         return;
-//     }
-
-//     $(pos).children('div')[0].remove()
-// }
 
 function addAlert(pos, message) {
 
-    // console.log($(pos))
-    // todo: select the last element? 
 
-    // clear all wrong status 
     $(".alert").remove()
 
 

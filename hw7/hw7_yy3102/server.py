@@ -338,7 +338,10 @@ data = [
     
 ]
 
-
+# todo: to optimize
+# 1. use date tag in add.html
+#
+#
 id = 11
 
 # ROUTES
@@ -362,16 +365,46 @@ def get_details(id = None):
 
     global data
 
-    print("/get_details")
     print(id)
     print(type(id))
 
-    index = None
-    for i in range(len(data)):
-        if data[i]["id"] == id:
-            index = i
+    item = None
+    
+    if request.method == 'GET':
+        print("Get view")
 
-    return render_template('view.html', item = data[index])
+        # index = None
+        # for i in range(len(data)):
+        #     if data[i]["id"] == id:
+        #         index = i
+        item = data[int(id) - 1]
+
+    if request.method == 'POST':
+        print("post view")
+
+        print(request.form.getlist('author'))
+        print(type(request.form))
+
+        item = data[int(id) - 1]
+        item["volumeInfo"]["title"] = request.form['title']
+        item["volumeInfo"]["author"] = request.form.getlist("author")
+        item["volumeInfo"]["publisher"] = request.form['publisher']
+        item["volumeInfo"]["publishedDate"] = request.form['published-date']
+        item["volumeInfo"]["description"] = request.form['description']
+        item["volumeInfo"]["industryIdentifiers"] = [
+            {
+                "type": "ISBN_10",
+                "identifier": request.form.getlist('isbn')[0]
+            },
+            {
+                "type": "ISBN_13",
+                "identifier": request.form.getlist('isbn')[1]
+            }
+        ]
+        item["volumeInfo"]["pageCount"] = request.form['length']
+        item["volumeInfo"]["imageLinks"]["thumbnail"] = request.form['image-link']
+        
+    return render_template('view.html', item = item)
 
 
 @app.route('/search_results/<keyword>', methods=['GET', 'POST'])
@@ -431,10 +464,11 @@ def add_item():
 
 
 @app.route('/edit/<id>', methods=['GET', 'POST'])
-def edit(id = None):
+def to_edit(id = None):
 
     global data 
 
+    print("edit id")
     # json_data = request.get_json()   
     # id = json_data["id"] 
     # print(id)
@@ -445,6 +479,40 @@ def edit(id = None):
 
     return render_template('edit.html', item = item)
 
+
+@app.route('/edit-submit/<id>', methods=['GET', 'POST'])
+def to_view(id = None):
+
+    global data 
+
+    print("edit submit")
+
+    print(request.form.getlist('author'))
+    print(type(request.form))
+
+    item = data[int(id) - 1]
+    item["volumeInfo"]["title"] = request.form['title']
+    item["volumeInfo"]["author"] = request.form.getlist("author")
+    item["volumeInfo"]["publisher"] = request.form['publisher']
+    item["volumeInfo"]["publishedDate"] = request.form['published-date']
+    item["volumeInfo"]["description"] = request.form['description']
+    item["volumeInfo"]["industryIdentifiers"] = [
+        {
+            "type": "ISBN_10",
+            "identifier": request.form.getlist('isbn')[0]
+        },
+        {
+            "type": "ISBN_13",
+            "identifier": request.form.getlist('isbn')[1]
+        }
+    ]
+    item["volumeInfo"]["pageCount"] = request.form['length']
+    item["volumeInfo"]["imageLinks"]["thumbnail"] = request.form['image-link']
+    
+    print(id)
+
+
+    return render_template('view.html', item = item)
 
 if __name__ == '__main__':
    app.run(debug = True)
