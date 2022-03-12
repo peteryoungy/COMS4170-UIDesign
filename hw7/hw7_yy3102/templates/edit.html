@@ -77,6 +77,12 @@
         align-items: flex-start;
     }
 
+
+
+    #edit-btn-div > button{
+        margin-right: 10px;
+        margin-top: 10px;
+    }
 </style>
 <h3>Edit a new book</h3>
 
@@ -158,9 +164,17 @@
                 </div>
             </div>
 
-            <div>
-                <button id="add-discard" class="btn btn-danger btn-sm"> Discard </button>
-                <button id="add-submit" class="btn btn-primary btn-sm"> Submit </button>
+<!-- dialog box -->
+
+            <div id="dialog" title="Confirmation">
+                Are you sure to discard the changes?
+                <button id="discard-no">No</button>
+                <button id="discard-yes">Yes</button>
+            </div>
+
+            <div id="edit-btn-div">
+                <button id="add-discard" class="btn btn-danger btn-sm"> Discard Changes </button>
+                <button id="add-submit" class="btn btn-primary btn-sm" type=> Submit </button>
             </div>
         </form>
     </div>

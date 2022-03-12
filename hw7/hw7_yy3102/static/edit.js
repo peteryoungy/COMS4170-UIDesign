@@ -18,6 +18,32 @@ $(document).ready(function(){
         $(".author-group").append(newEntry)
     })
 
+    $("#dialog").dialog({
+        autoOpen: false
+    })
+
+    $("#add-discard").click(function(event){
+
+        event.preventDefault();
+        // alert("Are you sure to discard the changes?")
+        $("#dialog").dialog("open")
+
+    })
+
+    $("#discard-no").click(function(){
+
+        $("#dialog").dialog("close")
+    })
+
+
+    $("#discard-yes").click(function(){
+
+        let pathname = window.location.pathname
+        // console.log(pathname)
+        console.log(pathname.substring(6))
+        let id = pathname.substring(6)
+        window.location.replace("http://localhost:5000/view/" + pathname.substring(6));
+    })
 
     $("#add-submit").click(function(event){
 
@@ -59,6 +85,7 @@ $(document).ready(function(){
                 if(value["value"].trim() === ""){
                     addAlert(pos, "Title cannot be empty!")
                     $("#add-title").focus()
+                    event.preventDefault();
                     return 
                 }
 
@@ -73,6 +100,7 @@ $(document).ready(function(){
                 if(value["value"].trim() === ""){
                     addAlert(pos, "Author cannot be empty!")
                     $("#add-author-" + index).focus()
+                    event.preventDefault();
                     return
                 }
 
@@ -87,6 +115,7 @@ $(document).ready(function(){
                 if(value["value"].trim() === ""){
                     addAlert(pos, "Publisher cannot be empty!")
                     $("#add-publisher").focus()
+                    event.preventDefault();
                     return 
                 }
 
@@ -100,6 +129,7 @@ $(document).ready(function(){
                 if(value["value"].trim() === ""){
                     addAlert(pos, "Published Date cannot be empty!")
                     $("#add-published-date").focus()
+                    event.preventDefault();
                     return 
                 }
 
@@ -114,6 +144,7 @@ $(document).ready(function(){
                 if(value["value"].trim() === ""){
                     addAlert(pos, "Image Link cannot be empty!")
                     $("#add-image-link").focus()
+                    event.preventDefault();
                     return 
                 }
 
@@ -126,6 +157,7 @@ $(document).ready(function(){
                 if(value["value"].trim() === ""){
                     addAlert(pos, "Description cannot be empty!")
                     $("#add-description").focus()
+                    event.preventDefault();
                     return 
                 }
 
@@ -140,12 +172,14 @@ $(document).ready(function(){
                 if(value["value"].trim() === ""){
                     addAlert(pos, "ISBN number cannot be empty!")
                     $("#add-isbn-" + isbn_index).focus()
+                    event.preventDefault();
                     return 
                 }
 
                 if(isNaN(value["value"].trim())){
                     addAlert(pos, "ISBN Must Be a Number!")
                     $("#add-isbn-" + isbn_index).focus()
+                    event.preventDefault();
                     return 
                 }
 
@@ -159,6 +193,7 @@ $(document).ready(function(){
                 if(value["value"].trim() === ""){
                     addAlert(pos, "Length cannot be empty!")
                     $("#add-length").focus()
+                    event.preventDefault();
                     return 
                 }
 
@@ -166,6 +201,7 @@ $(document).ready(function(){
                 if(isNaN(value["value"].trim())){
                     addAlert(pos, "Length Must Be a Number!")
                     $("#add-length").focus()
+                    event.preventDefault();
                     return 
                 }
                 length = value["value"].trim()
