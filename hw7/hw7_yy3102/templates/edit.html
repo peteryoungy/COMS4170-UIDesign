@@ -35,11 +35,11 @@
     input{
         margin-bottom: 5px;
 
-        width: 300px;
+        width: 500px;
     }
 
     textarea {
-        width: 300px;
+        width: 500px;
         height: 150px;
     }
 
@@ -78,22 +78,32 @@
     }
 
 
-
-    #edit-btn-div > button{
+    #add-discard{
         margin-right: 10px;
-        margin-top: 10px;
     }
+
+
+    #edit-btn-div{
+
+        display: flex;
+
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    
+
 </style>
-<h3>Edit a new book</h3>
+<p class="prompt">Edit a new book</p>
 
 <div class="container">
     <div id="reminder"></div>
 
     <div class="row">
-        <div class="col-md-3">
-            <img src= {{item.volumeInfo.imageLinks.thumbnail}}>
+        <div class="col-md-2">
+            <img src= {{item.volumeInfo.imageLinks.thumbnail}} alt="book cover">
         </div>
-        <form id="add-form" class="col-md-7" action="http://localhost:5000/view/{{item.id}}" method="post">
+        <form id="edit-form" class="col-md-8" action="http://localhost:5000/view/{{item.id}}" method="post">
             <div>
                 <label for="add-title"> Title </label>
                 <div id="title-div" class="inline">
@@ -104,7 +114,7 @@
             <div class="author-group">
                 <div class="new-line">
                     <label for="add-author"> Author </label>
-                    <button type="button" class="btn btn-outline-success btn-sm btn-add">Add</button>
+                    <button type="button" class="btn-sm btn-add btn-default">Add</button>
                 </div>
                         
                 {% for author in item.volumeInfo.authors %} 
@@ -168,13 +178,13 @@
 
             <div id="dialog" title="Confirmation">
                 Are you sure to discard the changes?
-                <button id="discard-no">No</button>
-                <button id="discard-yes">Yes</button>
+                <button id="discard-no" class="btn-static-no">No</button>
+                <button id="discard-yes" class="btn-static-yes">Yes</button>
             </div>
 
             <div id="edit-btn-div">
-                <button id="add-discard" class="btn btn-danger btn-sm"> Discard Changes </button>
-                <button id="add-submit" class="btn btn-primary btn-sm" type=> Submit </button>
+                <button id="add-discard" class="btn-sm btn-static-no"> Discard </button>
+                <button id="add-submit" class="btn-sm btn-static-yes" type="submit"> Submit </button>
             </div>
         </form>
     </div>

@@ -58,8 +58,8 @@ $(document).ready(function(){
 
         // console.log("On Click1.")
 
-        let data = $('#add-form').serializeArray()
-        // console.log(data)
+        let data = $('#edit-form').serializeArray()
+        console.log(data)
 
         let title
         let authors = []

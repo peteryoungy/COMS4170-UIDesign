@@ -3,10 +3,34 @@
 {% block content %}
 
 
-
 <script>
 
-    $("")
+    let keyword = {{ keyword|tojson }}
+    let search_list = {{ search_list|tojson }}
+
+    function displayMatches(keyword, classString) {
+
+        let allTitles = document.querySelectorAll(classString)
+        console.log(allTitles)
+
+        for(let i = 0; i < allTitles.length; i++){
+
+            let text = allTitles[i]
+            var regex = new RegExp(keyword, 'gi')
+            let response = text.innerText.replace(regex, function(str) {
+                return "<span style='background-color: yellow;'>" + str + "</span>"
+            })
+            text.innerHTML = response
+        }
+    }
+    
+    $(document).ready(function(){
+    
+
+        displayMatches(keyword, '.title-book')
+        displayMatches(keyword, '.publisher')
+        displayMatches(keyword, '.authors')
+    })
     
 </script>
 
@@ -14,20 +38,15 @@
 
     #item-container > a {
         display: block;
+        font-size: 14px;
     }
 
-    #prompt{
-        font-size: 30px;
-        font-weight: 700;
+    .item > * {
+        display: block;
     }
+
+
 </style>
-
-<div id="prompt">
-
-    Showing results for  "{{ keyword}}"
-
-</div>
-
 
 
 <div id="item-container">
@@ -35,11 +54,43 @@
 
 
     {% if search_list|length == 0 %}
-        No results found
+        <div class="prompt">
+            No results found for "{{ keyword}}"
+        </div>
+
     {% else %}
-        {% for key, value  in search_list.items() %}
-        <a href="http://localhost:5000/view/{{ key }}"> {{ value }} </a>
-        {% endfor %}
+        <div class="prompt">
+            Showing {{ search_list|length }} results for  "{{ keyword}}"
+        </div>
+    
+        <div class="row">
+            {% for key, value  in search_list.items() %}
+            <div class="col-md-2 item">
+                
+                <a href="/view/{{key}}">
+                    <img src={{value.volumeInfo.imageLinks.thumbnail}} alt="book cover">
+                </a>
+
+                <a class="big-title title-book" href="/view/{{key}}">
+                    {{value.volumeInfo.title}}
+                </a>
+                
+                <div >
+                    {% for author in value.volumeInfo.authors %} 
+                    <a class="small-title authors" href="/view/{{key}}"> {{author}} </a>
+                    {% endfor %}
+                </div>
+
+                <a class="small-title publisher" href="/view/{{key}}">
+                    {{value.volumeInfo.publisher}}
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- {% for key, value  in search_list.items() %}
+        <a href="http://localhost:5000/view/{{ key }}"> {{ value.volumeInfo.title }} </a>
+        {% endfor %} -->
     {% endif %}
 
 

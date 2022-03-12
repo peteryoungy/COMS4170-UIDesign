@@ -3,6 +3,7 @@
 {% block content %}
 
 <script type="text/javascript" src="{{ url_for('static', filename = 'view.js') }}"></script>
+
 <script>
 
     /*console.log("html")*/
@@ -52,21 +53,23 @@
 
         padding: 3px;
     }
+
+
 </style>
 
 <div class="container-book">
 
     <div id="basic-info" class="row">
         <div class="col-md-2">
-            <img src={{item.volumeInfo.imageLinks.thumbnail}} alt={{item.volumeInfo.title}}>
+            <img src={{item.volumeInfo.imageLinks.thumbnail}} alt="book cover">
         </div>
         <div class="col-md-7">
             <div id="book-title">
-                <div>
+                <div class="third-search">
                     {{item.volumeInfo.title}}
                 </div>
                 <a href="/edit/{{ item.id }}">
-                    <Button type="button" class="btn btn-light btn-sm" id="btn-edit"> Edit </Button>
+                    <button type="button" class="btn-sm btn-default" id="btn-edit"> Edit </button>
                 </a>
             </div>
 
@@ -77,7 +80,7 @@
                 <span>
                     
                     {% for author in item.volumeInfo.authors %} 
-                        <span class="bold"> {{author}} </span>
+                        <span class="bold third-search"> {{author}} </span>
                     {% endfor %}
         
                 </span>
@@ -123,7 +126,7 @@
                 </span>
             </div>
 
-            <div> 
+            <div class="third-search"> 
                 {{ item.volumeInfo.publisher }}
             </div>
 

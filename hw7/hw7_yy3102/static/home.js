@@ -2,7 +2,7 @@
 
 popular_items = [
 
-    "1", "2","3"
+    "1", "6","3"
 ]
 
 
@@ -12,16 +12,16 @@ function displayBooks(){
     $.each(popular_items, function(index, value){
 
         // 
-        let item = $("<div class=col-md-3>")
+        let item = $("<div class=col-md-2 item>")
         item.addClass("item")
         let imga = $("<a>")
         imga.attr("href", "/view/" + value)
         let img = $("<img>")
-        let title = $("<a class=title>")
+        let title = $("<a class=big-title>")
         title.attr("href", "/view/" + value)
 
         let authordiv = $("<div>")
-
+        // authordiv.attr('color','lightgrey')
         
         let data_to_send = {"id": value}
 
@@ -34,12 +34,12 @@ function displayBooks(){
             success: function(result){
                 // item.text(result["item"])
                 img.attr("src", result["item"]["volumeInfo"]["imageLinks"]["thumbnail"])
-                img.attr("alt", "book-cover")
+                img.attr("alt", "book cover")
                 title.text(result["item"]["volumeInfo"]["title"])
                 authors = result["item"]["volumeInfo"]["authors"]
 
                 $.each(authors, function(index, val){
-                    let author = $("<a class=author>")
+                    let author = $("<a class=small-title>")
                     author.attr("href", "/view/" + value)
                     author.text(val)
                     authordiv.append(author)

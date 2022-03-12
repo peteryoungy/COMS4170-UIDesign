@@ -113,7 +113,7 @@ data = [
             "title": "The Everything Job Interview Book",
             "subtitle": "All you need to stand out in today's competitive job market",
             "authors": [
-                "Lin Grensing-Pophal"
+                "Carole Martin"
             ],
             "publisher": "Simon and Schuster",
             "publishedDate": "2011-11-18",
@@ -144,7 +144,7 @@ data = [
     {
         "id": "5",
         "volumeInfo": {
-            "title": "Perfect Phrases for the Perfect Interview: Hundreds of Ready-to-Use Phrases That Succinctly Demonstrate Your Skills, Your Experience and Your Value in Any Interview Situation",
+            "title": "Perfect Phrases for the Perfect Interview",
             "subtitle": "Hundreds of Ready-to-Use Phrases That Succinctly Demonstrate Your Skills, Your Experience and Your V",
             "authors": [
                 "Carole Martin"
@@ -387,7 +387,7 @@ def get_details(id = None):
 
         item = data[int(id) - 1]
         item["volumeInfo"]["title"] = request.form['title']
-        item["volumeInfo"]["author"] = request.form.getlist("author")
+        item["volumeInfo"]["authors"] = request.form.getlist("author")
         item["volumeInfo"]["publisher"] = request.form['publisher']
         item["volumeInfo"]["publishedDate"] = request.form['published-date']
         item["volumeInfo"]["description"] = request.form['description']
@@ -420,10 +420,26 @@ def search_results(keyword = None):
     print(type(keyword))
 
     search_list = {}
+    
+    # search in title
     for i in range(len(data)):
-        if keyword in data[i]["volumeInfo"]["title"]:
-            print(data[i]["volumeInfo"]["title"])
-            search_list[data[i]["id"]]  = data[i]["volumeInfo"]["title"]
+        if keyword.lower() in data[i]["volumeInfo"]["title"].lower():
+            # print(data[i]["volumeInfo"]["title"])
+            search_list[data[i]["id"]]  = data[i]
+    
+    # search in publisher
+    for i in range(len(data)):
+        if keyword.lower() in data[i]["volumeInfo"]["publisher"].lower():
+            # print(data[i]["volumeInfo"]["title"])
+            search_list[data[i]["id"]]  = data[i]
+
+    # search in authors
+    for i in range(len(data)):
+        for author in data[i]["volumeInfo"]["authors"]:
+            if keyword.lower() in author.lower():
+                # print(data[i]["volumeInfo"]["title"])
+                search_list[data[i]["id"]]  = data[i]
+
 
     print(search_list)
     return render_template('search.html', search_list = search_list, keyword = keyword)

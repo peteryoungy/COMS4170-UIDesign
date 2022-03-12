@@ -47,4 +47,20 @@ $(document).ready(function(){
 
 
     })
+
+
+    $('.btn-default').hover(
+        function(){
+            console.log('enter')
+            // $('#search').attr('background-color','#595218 !important')
+            // $('#search').attr('color', 'white')
+            $(this).removeClass('btn-leave')
+            $(this).addClass('btn-over')
+        },
+        function(){
+            console.log('leave')
+            $(this).removeClass('btn-over')
+            $(this).addClass('btn-leave')
+        }
+    )
 })

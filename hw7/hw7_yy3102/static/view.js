@@ -30,4 +30,28 @@ $(document).ready(function(){
             }
         });
     })
+
+
+    $('.third-search').click(function(){
+
+
+        console.log("author clicked.")
+        
+        
+        console.log($(this).text())
+
+        $('#keyword').val($(this).text())
+
+        $('#search').trigger('click')
+    })
+
+
+    $('.third-search').hover(
+        function(){
+            $(this).addClass('pointer')
+        },
+        function(){
+            $(this).removeClass('pointer')
+        }
+    )
 })
